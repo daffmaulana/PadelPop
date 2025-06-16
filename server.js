@@ -5,7 +5,7 @@ const PORTS = process.env.PORTS || 3001;
 const https = require('https');
 const fs = require('fs');
 const passport = require("passport");
-require("./config/passport"); // file passport config
+require("./config/passport");
 
 const sslOptions = {
   key: fs.readFileSync('cert/key.pem'),
