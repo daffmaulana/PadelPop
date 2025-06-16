@@ -13,7 +13,6 @@ const sslOptions = {
 };
 
 app.use(passport.initialize());
-app.use(express.static('public'));
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 
