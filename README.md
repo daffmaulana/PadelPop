@@ -1,10 +1,12 @@
 
 # PadlePop 🎾
+
 Main Padel cantik di lapangan estetik<br/>
 Bookingnya di #PadlePop aja 😎
 
 
 ## Features
+
 1. 🔐 Autentikasi Aman
 Nikmati kemudahan login dengan email dan password, atau langsung masuk menggunakan akun Google.
 
@@ -19,6 +21,7 @@ Cek dan kelola semua lapangan yang sudah kamu pesan melalui halaman khusus "Rese
 
 5. 🔐 Keamanan Data Pengguna
 Tenang... Data kamu tidak diperjualbelikan kok. Kami sudah pakai enkripsi password dan sistem autentikasi kami dilengkapi dengan JWT untuk menjamin keamanan data pengguna. Semoga aman yaaa (kecuali nominalnya menarik 😂)
+
 ## Authors
 
 - Daffa Bagus Maulana - 221051163
@@ -27,3 +30,28 @@ Tenang... Data kamu tidak diperjualbelikan kok. Kami sudah pakai enkripsi passwo
 - Dafa Andika Firmansyah - 2210511xxx
 - Farel Bayhaqi - 2210511xxx
 - Faiz Firstian - 2210511xxx
+
+## Deployment
+
+1. Clone / Fork repository ke direktori lokal
+2. Create database baru di mySQL dengan file mySQL yang tersedia.
+3. Create file .env di root direktori lokal
+```bash
+PORT=3000
+PORTS=3001
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=padel_reservation
+JWT_SECRET=my-32-character-ultra-secure-and-ultra-long-secret
+GOOGLE_CLIENT_ID=[set your own/ contact Daffa]
+GOOGLE_CLIENT_SECRET=[kontak creator/ contact Daffa]
+```
+4. Run the server
+```bash
+node server.js
+```
+5. Akses localhost yang menggunakan https
+```bash
+https://localhost:3001
+```
