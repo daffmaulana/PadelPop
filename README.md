@@ -45,7 +45,7 @@ DB_PASSWORD=
 DB_NAME=padel_reservation
 JWT_SECRET=my-32-character-ultra-secure-and-ultra-long-secret
 GOOGLE_CLIENT_ID=[set your own/ contact Daffa]
-GOOGLE_CLIENT_SECRET=[kontak creator/ contact Daffa]
+GOOGLE_CLIENT_SECRET=[set your own/ contact Daffa]
 ```
 4. Run the server
 ```bash
