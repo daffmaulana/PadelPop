@@ -1,8 +1,8 @@
 
-# PadlePop 🎾
+# PadelPop 🎾
 
 Main Padel cantik di lapangan estetik<br/>
-Bookingnya di #PadlePop aja 😎
+Bookingnya di #PadelPop aja 😎
 
 
 ## Features
