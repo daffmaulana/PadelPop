@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Admin - PadelPop</title>
+<link rel="icon" type="image/x-icon" href="./logo.jpg">
+</head>
+
+<body>
+  
+  <a href="/"><button>Back</button></a>
+  <h1>Admin Dashboard</h1>
+  <h2>Kelola Fields</h2>
+
+  <h4>Tambah / Edit Lapangan</h4>
+  <input type="hidden" id="field-id">
+  <div>
+    Nama: <input type="text" id="name">
+  </div>
+  <div>
+    Lokasi: <input type="text" id="location">
+  </div>
+  <div>
+    Harga per Jam: <input type="number" id="price">
+  </div>
+  <div>
+    <button onclick="saveField()">Simpan Lapangan</button>
+  </div>
+
+  <h4></h4>
+  <table id="fields-table" border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nama</th>
+        <th>Lokasi</th>
+        <th>Harga/Jam</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <body>
+  <h2>Kelola Bookings</h2>
+
+  <!-- Booking Table -->
+  <table border="1" id="booking-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User</th>
+        <th>Field</th>
+        <th>Date</th>
+        <th>Time Start</th>
+        <th>Time End</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <h4>Tambah / Edit Booking</h4>
+  <form id="booking-form">
+    <input type="hidden" id="booking-id">
+    <label>User ID: <input type="number" id="user-id" required></label><br>
+    <label>Field ID: <input type="number" id="book-field-id" required></label><br>
+    <label>Date: <input type="date" id="date" required></label><br>
+    <label>Time Start: <input type="time" id="time-start" required></label><br>
+    <label>Time End: <input type="time" id="time-end" required></label><br>
+    <button type="submit">Simpan Booking</button>
+  </form>
+
+  <h2>Kelola Users</h2>
+<table border="1" id="users-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nama</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<h4>Tambah / Edit User</h4>
+<form id="user-form">
+  <input type="hidden" id="user-edit-id">
+  <label>Nama: <input type="text" id="user-name" required></label><br>
+  <label>Email: <input type="email" id="user-email" required></label><br>
+  <label>Password: <input type="password" id="user-password"></label><br>
+  <label>Role:
+    <select id="user-role" required>
+      <option value="user">User</option>
+      <option value="admin">Admin</option>
+    </select>
+  </label><br>
+  <button type="submit">Simpan User</button>
+</form>
+
+  <script>
+    const token = localStorage.getItem("token");
+    const tbody = document.querySelector("#fields-table tbody");
+    async function loadFields() {
+      const res = await fetch("/api/fields", {
+        headers: { Authorization: "Bearer " + token }
+      });
+      const data = await res.json();
+      tbody.innerHTML = "";
+      data.forEach(f => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${f.id}</td>
+          <td>${f.name}</td>
+          <td>${f.location}</td>
+          <td>${f.price_per_hour || '-'}</td>
+          <td>
+            <button onclick='editField(${JSON.stringify(f)})'>Edit</button>
+            <button onclick='deleteField(${f.id})'>Hapus</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function editField(field) {
+      document.getElementById("field-id").value = field.id;
+      document.getElementById("name").value = field.name;
+      document.getElementById("location").value = field.location;
+      document.getElementById("price").value = field.price_per_hour || 0;
+    }
+
+    async function saveField() {
+      const id = document.getElementById("field-id").value;
+      const name = document.getElementById("name").value;
+      const location = document.getElementById("location").value;
+      const price = document.getElementById("price").value;
+
+      const payload = { name, location, price_per_hour: price };
+      const method = id ? "PUT" : "POST";
+      const url = id ? `/api/fields/${id}` : "/api/fields";
+
+      const res = await fetch(url, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await res.json();
+      alert(result.message || "Berhasil");
+      loadFields();
+    }
+
+    async function deleteField(id) {
+      if (!confirm("Yakin ingin menghapus lapangan ini?")) return;
+      const res = await fetch(`/api/fields/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": "Bearer " + token
+        }
+      });
+      const result = await res.json();
+      alert(result.message || "Lapangan dihapus");
+      loadFields();
+    }
+
+    loadFields();
+
+    // ------------------------------
+
+    const tableBody = document.querySelector('#booking-table tbody');
+    const form = document.getElementById('booking-form');
+
+    async function loadBookings() {
+      const res = await fetch('/api/bookings', {
+        headers: { Authorization: 'Bearer ' + token }
+      });
+      const bookings = await res.json();
+      tableBody.innerHTML = '';
+      bookings.forEach(b => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${b.id}</td>
+          <td>${b.user_name}</td>
+          <td>${b.field_name}</td>
+          <td>${b.date?.split('T')[0]}</td>
+          <td>${b.time_start}</td>
+          <td>${b.time_end}</td>
+          <td>
+            <button onclick="editBooking(${b.id})">Edit</button>
+            <button onclick="deleteBooking(${b.id})">Delete</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    async function deleteBooking(id) {
+      if (!confirm("Are you sure?")) return;
+      await fetch('/api/bookings/admin/' + id, {
+        method: 'DELETE',
+        headers: { Authorization: 'Bearer ' + token }
+      });
+      loadBookings();
+    }
+
+    async function editBooking(id) {
+      const res = await fetch('/api/bookings/' + id, {
+        
+        headers: { Authorization: 'Bearer ' + token }
+      });
+      
+      const b = await res.json();
+      console.log("Update booking with ID:", b);
+      document.getElementById('booking-id').value = b.id;
+      document.getElementById('user-id').value = b.user_id;
+      document.getElementById('book-field-id').value = b.field_id;
+      document.getElementById('date').value = b.date?.split('T')[0];
+      document.getElementById('time-start').value = b.time_start;
+      document.getElementById('time-end').value = b.time_end;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('booking-id').value;
+      const payload = {
+        user_id: document.getElementById('user-id').value,
+        field_id: document.getElementById('book-field-id').value,
+        date: document.getElementById('date').value,
+        time_start: document.getElementById('time-start').value,
+        time_end: document.getElementById('time-end').value
+      };
+
+      const url = id
+        ? '/api/bookings/' + id
+        : '/api/bookings/admin/';
+
+      const method = id ? 'PUT' : 'POST';
+
+      const res = await fetch(url, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        form.reset();
+        loadBookings();
+      } else {
+        alert('Error during saving!');
+      }
+    });
+
+    loadBookings();
+
+    // ---------------------------------
+
+  async function loadUsers() {
+  const res = await fetch('/api/users', {
+    headers: { Authorization: 'Bearer ' + token }
+  });
+  const users = await res.json();
+  const tbody = document.querySelector("#users-table tbody");
+  tbody.innerHTML = '';
+  users.forEach(user => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${user.id}</td>
+      <td>${user.name}</td>
+      <td>${user.email}</td>
+      <td>${user.role}</td>
+      <td>
+        <button onclick='editUser(${JSON.stringify(user)})'>Edit</button>
+        <button onclick='deleteUser(${user.id})'>Hapus</button>
+      </td>
+    `;
+    tbody.appendChild(row);
+  });
+}
+
+function editUser(user) {
+  document.getElementById('user-edit-id').value = user.id;
+  document.getElementById('user-name').value = user.name;
+  document.getElementById('user-email').value = user.email;
+  document.getElementById('user-role').value = user.role;
+}
+
+async function deleteUser(id) {
+  if (!confirm("Yakin hapus user?")) return;
+  const res = await fetch(`/api/users/${id}`, {
+    method: 'DELETE',
+    headers: { Authorization: 'Bearer ' + token }
+  });
+  alert((await res.json()).message || 'User dihapus');
+  loadUsers();
+}
+
+document.getElementById('user-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const id = document.getElementById('user-edit-id').value;
+  const payload = {
+    name: document.getElementById('user-name').value,
+    email: document.getElementById('user-email').value,
+    password: document.getElementById('user-password').value, // opsional kalau kosong
+    role: document.getElementById('user-role').value
+  };
+
+  if (!payload.password) delete payload.password;
+
+  const res = await fetch(id ? `/api/users/${id}` : '/api/users', {
+    method: id ? 'PUT' : 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token
+    },
+    body: JSON.stringify(payload)
+  });
+
+  alert((await res.json()).message || 'User disimpan');
+  e.target.reset();
+
+  loadUsers();
+});
+
+loadUsers();
+
+  </script>
+
+  
+</body>
+</html>

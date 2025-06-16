@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to PadelPop!</title>
+  <link rel="icon" type="image/x-icon" href="./logo.jpg">
+</head>
+<body>
+  <h1>Welcome to Padel Pop!</h1>
+
+  <a href="register.html">Register</a> |
+  <a href="login.html">Login</a> |
+  <a href="booking.html">Book a Field</a> |
+  <a href="list-fields.html">See Available Fields</a> |
+  <a href="my-bookings.html">My Bookings</a> |
+  <a href="admin.html">Khusus Admin</a>
+
+  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+  <script>
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const decoded = jwt_decode(token);
+        const name = decoded.name || decoded.email;
+        const greeting = document.createElement('p');
+        greeting.textContent = `Hello, ${name}!`;
+        document.body.insertBefore(greeting, document.querySelector('a'));
+      } catch (err) {
+        console.error('Invalid token:', err);
+      }
+    }
+  </script>
+</body>
+</html>

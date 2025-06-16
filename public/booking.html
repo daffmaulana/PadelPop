@@ -1,0 +1,49 @@
+<script>
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    alert("You must login first");
+    window.location.href = "login.html";
+  }
+</script>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book a Field - PadelPop</title>
+  <link rel="icon" type="image/x-icon" href="./logo.jpg">
+</head>
+<body>
+  <a href="/"><button>Back</button></a>
+  <h2>Book a Padel Field</h2>
+  <form id="booking-form">
+    <input name="field_id" placeholder="Field ID" required /><br />
+    <input name="date" type="date" required /><br />
+    <input name="time_start" type="time" required /><br />
+    <input name="time_end" type="time" required /><br />
+    <button type="submit">Book</button>
+  </form>
+
+  <script>
+    document.getElementById("booking-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const token = localStorage.getItem("token");
+      const res = await fetch("https://localhost:3001/api/bookings/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          field_id: e.target.field_id.value,
+          date: e.target.date.value,
+          time_start: e.target.time_start.value,
+          time_end: e.target.time_end.value,
+        }),
+      });
+      const data = await res.json();
+      alert(data.message || "Booking success");
+    });
+  </script>
+</body>
+</html>

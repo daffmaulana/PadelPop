@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login - PadelPop</title>
+  <link rel="icon" type="image/x-icon" href="./logo.jpg">
+</head>
+<body>
+  <a href="/"><button>Back</button></a>
+  <h2>Login</h2>
+  <form id="login-form">
+    <input name="email" type="email" placeholder="Email" required /><br />
+    <input name="password" type="password" placeholder="Password" required /><br />
+    <button type="submit">Login</button>
+  </form>
+  <a href="https://localhost:3001/auth/google"><button>Login with Google</button></a>
+  <button id="logoutBtn">Logout</button>
+  
+
+  <script>
+    document.getElementById("login-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const res = await fetch("https://localhost:3001/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: e.target.email.value,
+          password: e.target.password.value,
+        }),
+      });
+      const data = await res.json();
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        alert("Login successful!");
+        window.location.href = "booking.html";
+      } else {
+        alert(data.message || "Login failed");
+      }
+    });
+
+    const logoutBtn = document.getElementById("logoutBtn");
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem("token");
+      alert("You are logged out");
+      window.location.href = "login.html";
+    });
+  }
+  </script>
+</body>
+</html>

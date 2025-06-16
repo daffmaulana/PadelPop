@@ -1,0 +1,73 @@
+<script>
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    alert("You must login first");
+    window.location.href = "login.html";
+  }
+</script>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Available Fields - PadelPop</title>
+  <link rel="icon" type="image/x-icon" href="./logo.jpg">
+</head>
+<body>
+  <a href="/"><button>Back</button></a>
+  <h2>Available Fields</h2>
+  <ul id="field-list"></ul>
+
+<script>
+    const formatDate = (isoDate) => {
+    const d = new Date(isoDate);
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0'); // 0-based
+    const year = d.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
+
+  async function loadFields() {
+    const res = await fetch("https://localhost:3001/api/fields");
+    
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error("Server error:", errorText);
+      alert("Gagal memuat data lapangan");
+      return;
+    }
+
+    let fields = [];
+    try {
+      fields = await res.json();
+    } catch (err) {
+      console.error("Invalid JSON:", err);
+      alert("Data tidak valid dari server");
+      return;
+    }
+
+    const list = document.getElementById("field-list");
+    list.innerHTML = "";
+
+    fields.forEach((f, i) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <strong>${i + 1}. Field ${f.name} (id: ${f.id})</strong><br>
+        Lokasi: ${f.location}<br>
+        Jadwal yang sudah terbooking:
+        <ul>
+          ${f.bookings.length > 0
+            ? f.bookings.map(b => `<li>${formatDate(b.date)}, ${b.time_start} - ${b.time_end}</li>`).join("")
+            : "<li>Tidak ada jadwal terbooking</li>"
+          }
+        </ul>
+        <hr>
+      `;
+      list.appendChild(li);
+    });
+  }
+
+  loadFields();
+</script>
+</body>
+</html>

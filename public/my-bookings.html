@@ -1,0 +1,74 @@
+<script>
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    alert("You must login first");
+    window.location.href = "login.html";
+  }
+</script>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Bookings - PadelPop</title>
+  <link rel="icon" type="image/x-icon" href="./logo.jpg">
+</head>
+<body>
+  <a href="/"><button>Back</button></a>
+  <h2>My Bookings</h2>
+  <ul id="my-bookings-list"></ul>
+
+  <script>
+    const formatDate = (isoDate) => {
+    const d = new Date(isoDate);
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0'); // 0-based
+    const year = d.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
+
+  async function loadBookings() {
+    const token = localStorage.getItem("token");
+    const res = await fetch("https://localhost:3001/api/bookings/my", {
+      headers: { "Authorization": `Bearer ${token}` },
+    });
+    const bookings = await res.json();
+    const list = document.getElementById("my-bookings-list");
+    list.innerHTML = "";
+
+    bookings.forEach(b => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        Field ${b.field_id} - ${formatDate(b.date)} (${b.time_start} to ${b.time_end})
+        <button onclick="cancelBooking(${b.id})">Cancel</button>
+      `;
+      list.appendChild(li);
+    });
+  }
+
+  async function cancelBooking(bookingId) {
+    const token = localStorage.getItem("token");
+
+    const confirmCancel = confirm("Apakah kamu yakin ingin membatalkan booking ini?");
+    if (!confirmCancel) return;
+
+    const res = await fetch(`https://localhost:3001/api/bookings/${bookingId}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      alert(data.message);
+      loadBookings(); // refresh
+    } else {
+      alert("Gagal membatalkan booking: " + data.message);
+    }
+  }
+
+  loadBookings();
+</script>
+</body>
+</html>
