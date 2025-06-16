@@ -25,11 +25,11 @@ Tenang... Data kamu tidak diperjualbelikan kok. Kami sudah pakai enkripsi passwo
 ## Authors
 
 - Daffa Bagus Maulana - 221051163
-- Putra - 2110511xxx
-- Ananda Divana - 2210511xxx
-- Dafa Andika Firmansyah - 2210511xxx
-- Farel Bayhaqi - 2210511xxx
-- Faiz Firstian - 2210511xxx
+- Putra Mahandika - 2110511047
+- Ananda Divana - 2210511053
+- Dafa Andika Firmansyah - 2210511049
+- Farel Bayhaqi - 2210511073
+- Faiz Firstian Nugroho - 2210511045
 
 ## Deployment
 
