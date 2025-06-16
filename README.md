@@ -67,7 +67,7 @@ https://localhost:3001
 ### 2. Fields (`/fields`)
 - `GET /` - Daftar lapangan
 - `GET /:id` - Daftar lapangan sesuai id
--khusus admin-
+<br/>-khusus admin-
 - `POST /` - Tambahkan lapangan
 - `PUT /:id` - Edit lapangan sesuai id
 - `DELETE /:id` - Hapus lapangan sesuai id
@@ -76,7 +76,7 @@ https://localhost:3001
 - `GET /my` - Riwayat booking sesuai akun
 - `POST /` - Membuat booking baru
 - `DELETE /:id` - Menghapus booking sesuai id
--khusus admin-
+<br/>-khusus admin-
 - `GET /` - Daftar semua riwayat booking
 - `GET /:id` - Riwayat booking sesuai id
 - `POST /admin` - Membuat booking baru
