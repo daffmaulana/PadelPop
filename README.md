@@ -55,3 +55,52 @@ node server.js
 ```bash
 https://localhost:3001
 ```
+
+## Endpoint (/api)
+
+### 1. Autentikasi (`/auth`)
+- `POST /register` - Registrasi pengguna baru
+- `POST /login` - Login pengguna
+- `GET /google` - Login dengan Google
+- `GET /google/callback` - Callback untuk autentikasi Google
+
+### 2. Fields (`/fields`)
+- `GET /` - Daftar lapangan
+- `GET /:id` - Daftar lapangan sesuai id
+-khusus admin-
+- `POST /` - Tambahkan lapangan
+- `PUT /:id` - Edit lapangan sesuai id
+- `DELETE /:id` - Hapus lapangan sesuai id
+
+### 3. Booking (`/bookings`)
+- `GET /my` - Riwayat booking sesuai akun
+- `POST /` - Membuat booking baru
+- `DELETE /:id` - Menghapus booking sesuai id
+-khusus admin-
+- `GET /` - Daftar semua riwayat booking
+- `GET /:id` - Riwayat booking sesuai id
+- `POST /admin` - Membuat booking baru
+- `PUT /:id` - Edit booking sesuai id
+- `DELETE /:id` - Hapus booking sesuai id
+
+### 4. Users (`/users`)
+-khusus admin-
+- `GET /` - Daftar akun terdaftar
+- `POST /` - Buat akun baru
+- `PUT /:id` - Edit informasi akun sesuai id
+- `DELETE /:id` - Hapus akun sesuai id
+
+## Checklist Penugasan
+
+- Sistem memiliki REST API untuk CRUD data. Data disimpan dalam database (pilih RDBMS atau NoSQL). 🟢
+- Gunakan JWT untuk autentikasi pengguna. 🟢
+- Sediakan opsi login menggunakan OAuth (Google). 🟢
+- Batasi jumlah permintaan API untuk setiap pengguna dalam jangka waktu tertentu. 🟢
+- Mengintegrasikan perangkat IoT (optional) 🔴
+- Data dari IoT dikirim melalui broker pesan (message broker) seperti RabbitMQ atau Kafka. 🔴
+- Gunakan API Gateway untuk mengelola lalu lintas antar layanan, termasuk routing dan validasi. 🟢
+- Setiap layanan dikemas menggunakan Docker. 🔴
+- Gunakan Kubernetes untuk mengorkestrasi layanan, memastikan ketersediaan dan penskalaan otomatis. 🔴
+- Implementasikan HTTPS menggunakan sertifikat SSL/TLS. 🟢
+- Enkripsi data sensitif di server. 🟢
+
