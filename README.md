@@ -37,6 +37,7 @@ Tenang... Data kamu tidak diperjualbelikan kok. Kami sudah pakai enkripsi passwo
 | HTML + JavaScript          | Frontend             |
 | Node.js                    | Backend              |
 | Express.js                 | Framework API        |
+| Docker                     | Containerization     |
 | jsonwebtoken               | Authentication Token |
 | Passport.js + Google OAuth | Login via Google     |
 | express-rate-limit         | Rate limiting        |
@@ -97,7 +98,7 @@ Melakukan penyimpanan semua data yang digunakan oleh sistem dan masing-masing se
 - Mengintegrasikan perangkat IoT (optional) 🔴
 - Data dari IoT dikirim melalui broker pesan (message broker) seperti RabbitMQ atau Kafka. 🔴
 - Gunakan API Gateway untuk mengelola lalu lintas antar layanan, termasuk routing dan validasi. 🟢
-- Setiap layanan dikemas menggunakan Docker. 🔴
+- Setiap layanan dikemas menggunakan Docker. 🟢
 - Gunakan Kubernetes untuk mengorkestrasi layanan, memastikan ketersediaan dan penskalaan otomatis. 🔴
 - Implementasikan HTTPS menggunakan sertifikat SSL/TLS. 🟢
 - Enkripsi data sensitif di server. 🟢
