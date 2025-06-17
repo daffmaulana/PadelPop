@@ -103,7 +103,7 @@ Melakukan penyimpanan semua data yang digunakan oleh sistem dan masing-masing se
 - Implementasikan HTTPS menggunakan sertifikat SSL/TLS. 🟢
 - Enkripsi data sensitif di server. 🟢
 
-## Deployment
+## Deployment Local Host
 
 1. Clone / Fork repository ke direktori lokal
 2. Create database baru di mySQL dengan file mySQL yang tersedia.
@@ -124,6 +124,29 @@ GOOGLE_CLIENT_SECRET=[set your own/ contact Daffa]
 node server.js
 ```
 5. Akses localhost yang menggunakan https
+```bash
+https://localhost:3001
+```
+
+## Deployment Docker
+1. Clone / Fork repository ke direktori lokal
+2. Create file .env di root direktori lokal
+```bash
+PORT=3000
+PORTS=3001
+DB_HOST=db 
+DB_USER=root
+DB_PASSWORD=root
+DB_NAME=padel_reservation
+JWT_SECRET=my-32-character-ultra-secure-and-ultra-long-secret
+GOOGLE_CLIENT_ID=[set your own/ contact Daffa]
+GOOGLE_CLIENT_SECRET=[set your own/ contact Daffa]
+```
+3. Jalankan `docker-compose up --build`
+4. Akses adminer mySQL di `localhost:8080` dengan user `root` dan password `root`
+5. Create database dengan import file mySQL yang tersedia.
+6. Jalankan ulang container `padel_reservation_app` di docker.
+7. Akses localhost yang menggunakan https
 ```bash
 https://localhost:3001
 ```
