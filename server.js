@@ -18,7 +18,7 @@ const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 
 https.createServer(sslOptions, app).listen(PORTS, () => {
-  console.log(`HTTPS Server berjalan di https://localhost:${PORT}`);
+  console.log(`HTTPS Server berjalan di https://localhost:${PORTS}`);
 });
 
 app.listen(PORT, () => {
