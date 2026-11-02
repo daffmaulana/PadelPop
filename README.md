@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-  <a href="#demo">Demo</a> •
+  <a href="#demo">Documentations</a> •
   <a href="#features">Features</a> •
   <a href="#tech-stack">Tech Stack</a> •
   <a href="#architecture">Architecture</a> •
@@ -42,38 +42,30 @@ Register / Login → Browse Courts → Pick Date & Time → Book → Manage Rese
 
 ---
 
-## Demo
+## Documentations
 
 > Browse courts, book a time slot, and manage your reservations.
 
-**Live demo:** <!-- TODO: add the deployed URL here once the app is online -->
-
-<!-- TODO: add screenshots to docs/screenshots/, then uncomment the table below.
 <table>
   <tr>
     <td align="center" width="20%">
-      <img src="docs/screenshots/login.png" width="160" alt="Login" /><br />
-      <sub><strong>Login</strong></sub>
+      <img width="1380" height="978" alt="home" src="https://github.com/user-attachments/assets/d21d1814-575f-442e-bb61-99a24561b87f" />
+      <sub><strong>Home</strong></sub>
     </td>
     <td align="center" width="20%">
-      <img src="docs/screenshots/courts.png" width="160" alt="Courts" /><br />
+      <img width="1901" height="991" alt="Courts" src="https://github.com/user-attachments/assets/548c429b-2259-492f-8a32-7d5534253462" />
       <sub><strong>Courts</strong></sub>
     </td>
     <td align="center" width="20%">
-      <img src="docs/screenshots/booking.png" width="160" alt="Booking" /><br />
-      <sub><strong>Booking</strong></sub>
+      <img width="1914" height="992" alt="Booking Process" src="https://github.com/user-attachments/assets/43aba928-b140-4289-a7c2-b2f44ab1168b" />
+      <sub><strong>Booking Process</strong></sub>
     </td>
     <td align="center" width="20%">
-      <img src="docs/screenshots/my-reservations.png" width="160" alt="My Reservations" /><br />
-      <sub><strong>My Reservations</strong></sub>
-    </td>
-    <td align="center" width="20%">
-      <img src="docs/screenshots/admin.png" width="160" alt="Admin Dashboard" /><br />
-      <sub><strong>Admin Dashboard</strong></sub>
+      <img width="1914" height="990" alt="My Bookings" src="https://github.com/user-attachments/assets/6ffb09a2-cc72-41fc-9345-d236ddbeb568" />
+      <sub><strong>My Bookings</strong></sub>
     </td>
   </tr>
 </table>
--->
 
 ---
 
@@ -274,26 +266,16 @@ Then open Adminer at `localhost:8080` (user `root`, password `root`), import `pa
 
 ---
 
-## Roadmap
-
-- [ ] Deploy the application and add the live demo link
-- [ ] Add screenshots to the README
-- [ ] Add automated tests and a CI workflow
-- [ ] Integrate IoT data through a message broker
-- [ ] Orchestrate the services with Kubernetes
-
----
-
 ## Team
 
 Built by a group of six:
 
-- Daffa Bagus Maulana
-- Putra Mahandika
-- Ananda Divana
-- Dafa Andika Firmansyah
-- Farel Bayhaqi
-- Faiz Firstian Nugroho
+- Daffa Bagus Maulana - 221051163
+- Putra Mahandika - 2110511047
+- Ananda Divana - 2210511053
+- Dafa Andika Firmansyah - 2210511049
+- Farel Bayhaqi - 2210511073
+- Faiz Firstian Nugroho - 2210511045
 
 <!-- TODO: describe your own contribution to the project (e.g. which services or pages you built) -->
 
