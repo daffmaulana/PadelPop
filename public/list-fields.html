@@ -122,7 +122,7 @@
 
     async function loadFields() {
       try {
-        const res = await fetch("https://localhost:3001/api/fields", {
+        const res = await fetch("/api/fields", {
           headers: {
             'Authorization': `Bearer ${token}`
           }

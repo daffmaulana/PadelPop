@@ -130,7 +130,7 @@
             <span class="text-muted">or</span>
         </div>
 
-        <a href="https://localhost:3001/auth/google" class="btn btn-google">
+        <a href="/auth/google" class="btn btn-google">
             <i class="fab fa-google"></i> Login with Google
         </a>
 
@@ -148,7 +148,7 @@
             const errorAlert = document.getElementById('errorAlert');
             
             try {
-                const res = await fetch("https://localhost:3001/auth/login", {
+                const res = await fetch("/auth/login", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({

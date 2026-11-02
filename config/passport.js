@@ -5,7 +5,7 @@ const db = require('../models/db');
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: 'https://localhost:3001/auth/google/callback'
+  callbackURL: process.env.GOOGLE_CALLBACK_URL || 'https://localhost:3001/auth/google/callback'
 }, (accessToken, refreshToken, profile, done) => {
   const email = profile.emails[0].value;
   db.query('SELECT * FROM users WHERE email = ?', [email], (err, results) => {

@@ -11,6 +11,9 @@ RUN npm install
 # Copy the rest of the app
 COPY . .
 
+# Set production environment
+ENV NODE_ENV=production
+
 # Expose both HTTP and HTTPS ports
 EXPOSE 3000
 EXPOSE 3001
