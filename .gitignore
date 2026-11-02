@@ -1,1 +1,17 @@
+# Dependencies
+node_modules/
+
+# Secrets and local config
 .env
+
+# HTTPS certificates and private keys (generate locally)
+cert/
+
+# Tools and temp files
+openssl-0.9.8k_X64/
+.rnd
+
+# Logs and OS files
+*.log
+.DS_Store
+Thumbs.db

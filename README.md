@@ -1,152 +1,305 @@
-
 # PadelPop 🎾
 
-Main Padel cantik di lapangan estetik<br/>
-Bookingnya di #PadelPop aja 😎
+<p align="center">
+  <strong>Main Padel cantik di lapangan estetik. Bookingnya di #PadelPop aja 😎</strong>
+</p>
 
-## Authors
+<p align="center">
+  A web application for booking padel courts online, with secure authentication, real-time availability and an admin dashboard.
+</p>
 
-- Daffa Bagus Maulana - 221051163
-- Putra Mahandika - 2110511047
-- Ananda Divana - 2210511053
-- Dafa Andika Firmansyah - 2210511049
-- Farel Bayhaqi - 2210511073
-- Faiz Firstian Nugroho - 2210511045
+<p align="center">
+  <img src="https://img.shields.io/badge/Node.js-339933?style=flat&logo=nodedotjs&logoColor=white" alt="Node.js" />
+  <img src="https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white" alt="Express" />
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white" alt="MySQL" />
+  <img src="https://img.shields.io/badge/JWT-000000?style=flat&logo=jsonwebtokens&logoColor=white" alt="JWT" />
+  <img src="https://img.shields.io/badge/Google_OAuth-4285F4?style=flat&logo=google&logoColor=white" alt="Google OAuth" />
+  <img src="https://img.shields.io/badge/Swagger-85EA2D?style=flat&logo=swagger&logoColor=black" alt="Swagger" />
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white" alt="Docker" />
+</p>
 
+<p align="center">
+  <a href="#demo">Demo</a> •
+  <a href="#features">Features</a> •
+  <a href="#tech-stack">Tech Stack</a> •
+  <a href="#architecture">Architecture</a> •
+  <a href="#api-reference">API</a> •
+  <a href="#getting-started">Getting Started</a> •
+  <a href="#team">Team</a>
+</p>
+
+---
+
+## What is PadelPop?
+
+**PadelPop** is a court reservation system for padel. Players can browse courts, check which dates and hours are still free, and book a slot in a few clicks. Admins manage courts, bookings and user accounts from a dedicated dashboard.
+
+It was built as a **group course project** to practise designing a secured REST API with JWT, Google OAuth, rate limiting, an API gateway, HTTPS and Docker.
+
+```text
+Register / Login → Browse Courts → Pick Date & Time → Book → Manage Reservations
+```
+
+---
+
+## Demo
+
+> Browse courts, book a time slot, and manage your reservations.
+
+**Live demo:** <!-- TODO: add the deployed URL here once the app is online -->
+
+<!-- TODO: add screenshots to docs/screenshots/, then uncomment the table below.
+<table>
+  <tr>
+    <td align="center" width="20%">
+      <img src="docs/screenshots/login.png" width="160" alt="Login" /><br />
+      <sub><strong>Login</strong></sub>
+    </td>
+    <td align="center" width="20%">
+      <img src="docs/screenshots/courts.png" width="160" alt="Courts" /><br />
+      <sub><strong>Courts</strong></sub>
+    </td>
+    <td align="center" width="20%">
+      <img src="docs/screenshots/booking.png" width="160" alt="Booking" /><br />
+      <sub><strong>Booking</strong></sub>
+    </td>
+    <td align="center" width="20%">
+      <img src="docs/screenshots/my-reservations.png" width="160" alt="My Reservations" /><br />
+      <sub><strong>My Reservations</strong></sub>
+    </td>
+    <td align="center" width="20%">
+      <img src="docs/screenshots/admin.png" width="160" alt="Admin Dashboard" /><br />
+      <sub><strong>Admin Dashboard</strong></sub>
+    </td>
+  </tr>
+</table>
+-->
+
+---
 
 ## Features
 
-1. 🔐 Autentikasi Aman (Auth)<br/>
-Nikmati kemudahan login dengan email dan password, atau langsung masuk menggunakan akun Google.
+| Feature                | Description                                                              |
+| ---------------------- | ------------------------------------------------------------------------ |
+| Authentication         | Log in with email and password, or with a Google account                 |
+| Registration           | Create an account with name, email and password                          |
+| Real-time Availability | See courts with their location and free dates and hours, straight from the database |
+| Booking                | Reserve a court and avoid double bookings                                |
+| Reservation Management | View and manage your bookings on the "Reservasi Saya" page              |
+| Admin Dashboard        | Manage courts, bookings and user accounts                                |
+| Security               | Encrypted passwords, JWT-based sessions, API rate limiting and HTTPS     |
 
-2. 📝 Pendaftaran Pengguna (Auth)<br/>
-Buat akun dengan mudah melalui halaman registrasi. Cukup isi nama, email, dan password, dan kamu siap untuk memesan lapangan padel kapan saja.
-
-3. 📅 Booking Lapangan Real-Time (Field)<br/>
-Lihat daftar lapangan yang tersedia lengkap dengan lokasi dan jadwal kosong (tanggal dan jam). Tidak perlu lagi menebak-nebak – semua informasi tersedia secara real-time langsung dari database.
-
-4. 📋 Manajemen Reservasi (Booking)<br/>
-Cek dan kelola semua lapangan yang sudah kamu pesan melalui halaman khusus "Reservasi Saya". Jadwalkan ulang atau lihat status booking-mu kapan saja.
-
-5. 🔐 Keamanan Data Pengguna (auth)<br/>
-Tenang... Data kamu tidak diperjualbelikan kok. Kami sudah pakai enkripsi password dan sistem autentikasi kami dilengkapi dengan JWT untuk menjamin keamanan data pengguna. Semoga aman yaaa (kecuali nominalnya menarik 😂)
+---
 
 ## Tech Stack
+
 | Technology                 | Function             |
-|----------------------------|----------------------|
+| -------------------------- | -------------------- |
 | HTML + JavaScript          | Frontend             |
 | Node.js                    | Backend              |
-| Express.js                 | Framework API        |
-| Docker                     | Containerization     |
-| jsonwebtoken               | Authentication Token |
-| Passport.js + Google OAuth | Login via Google     |
-| express-rate-limit         | Rate limiting        |
+| Express.js                 | API framework        |
 | MySQL                      | Database             |
-| Swagger                    | Documentation        |
+| jsonwebtoken               | Authentication token |
+| Passport.js + Google OAuth | Login with Google    |
+| express-rate-limit         | Rate limiting        |
+| Swagger                    | API documentation    |
+| Docker                     | Containerization     |
 
-## Dokumentasi Service
-![Gambar Arsitektur Mikroservis](https://github.com/daffmaulana/PadelPop/blob/master/arsitektur.png)
-### 1. Autentikasi (`/api/auth`)
-Service auth digunakan untuk melakukan autentikasi akun berdasarkan email dan password sebelum masuk ke dalam sistem.
-- `POST /register` - Registrasi pengguna baru
-- `POST /login` - Login pengguna
-- `GET /google` - Login dengan Google
-- `GET /google/callback` - Callback untuk autentikasi Google
+---
 
-### 2. Fields (`/api/fields`)
-Service fields digunakan untuk menghandle spesifikasi lapangan seperti nama, lokasi, dan biaya per jam.
-- `GET /` - Daftar lapangan
-- `GET /:id` - Daftar lapangan sesuai id
-<br/>-khusus admin-
-- `POST /` - Tambahkan lapangan
-- `PUT /:id` - Edit lapangan sesuai id
-- `DELETE /:id` - Hapus lapangan sesuai id
+## Architecture
 
-### 3. Booking (`/api/bookings`)
-Service booking digunakan untuk menghandle pemesanan lapangan seperti membuat pesanan baru, menghapus pesanan, atau mencegah konflik double-order.
-- `GET /my` - Riwayat booking sesuai akun
-- `POST /` - Membuat booking baru
-- `DELETE /:id` - Menghapus booking sesuai id
-<br/>-khusus admin-
-- `GET /` - Daftar semua riwayat booking
-- `GET /:id` - Riwayat booking sesuai id
-- `POST /admin` - Membuat booking baru
-- `PUT /:id` - Edit booking sesuai id
-- `DELETE /:id` - Hapus booking sesuai id
+![Architecture diagram](arsitektur.png)
 
-### 4. Users (`/api/users`)
-Service users hanya dapat digunakan oleh admin untuk menghandle akun yang terdaftar pada database.
--khusus admin-
-- `GET /` - Daftar akun terdaftar
-- `POST /` - Buat akun baru
-- `PUT /:id` - Edit informasi akun sesuai id
-- `DELETE /:id` - Hapus akun sesuai id
+| Service  | Base path        | Responsibility                                                  |
+| -------- | ---------------- | --------------------------------------------------------------- |
+| Auth     | `/api/auth`      | Registration, login and Google OAuth                            |
+| Fields   | `/api/fields`    | Court data: name, location and price per hour                   |
+| Bookings | `/api/bookings`  | Create, view and cancel bookings, and prevent double orders     |
+| Users    | `/api/users`     | Account management (admin only)                                 |
+| Frontend | `public/`        | Pages for login, register, courts, booking, history and admin   |
+| Database | MySQL            | Stores all application data                                     |
 
-### 5. Frontend (`public/index.html`)
-Menyediakan tampilan HTML pada browser dan skrip JS untuk masing-masing halaman yang diperlukan seperti login, register, melihat field, melakukan booking, melihat riwayat booking, dan dashboard admin. 
+### Repository Structure
 
-### 6. Database (`mySQL`)
-Melakukan penyimpanan semua data yang digunakan oleh sistem dan masing-masing service.
+<!-- TODO: verify the one-line descriptions against the actual code -->
 
-
-## Checklist Penugasan
-
-- Sistem memiliki REST API untuk CRUD data. Data disimpan dalam database (pilih RDBMS atau NoSQL). 🟢
-- Gunakan JWT untuk autentikasi pengguna. 🟢
-- Sediakan opsi login menggunakan OAuth (Google). 🟢
-- Batasi jumlah permintaan API untuk setiap pengguna dalam jangka waktu tertentu. 🟢
-- Mengintegrasikan perangkat IoT (optional) 🔴
-- Data dari IoT dikirim melalui broker pesan (message broker) seperti RabbitMQ atau Kafka. 🔴
-- Gunakan API Gateway untuk mengelola lalu lintas antar layanan, termasuk routing dan validasi. 🟢
-- Setiap layanan dikemas menggunakan Docker. 🟢
-- Gunakan Kubernetes untuk mengorkestrasi layanan, memastikan ketersediaan dan penskalaan otomatis. 🔴
-- Implementasikan HTTPS menggunakan sertifikat SSL/TLS. 🟢
-- Enkripsi data sensitif di server. 🟢
-
-## Deployment Local Host
-
-1. Clone / Fork repository ke direktori lokal
-2. Create database baru di mySQL dengan file mySQL yang tersedia.
-3. Create file .env di root direktori lokal
-```bash
-PORT=3000
-PORTS=3001
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=
-DB_NAME=padel_reservation
-JWT_SECRET=my-32-character-ultra-secure-and-ultra-long-secret
-GOOGLE_CLIENT_ID=[set your own/ contact Daffa]
-GOOGLE_CLIENT_SECRET=[set your own/ contact Daffa]
+```text
+PadelPop/
+├── config/                  # Application configuration
+├── controllers/             # Request handlers
+├── gateway/                 # API gateway
+├── middlewares/             # Express middlewares
+├── models/                  # Database models
+├── public/                  # Frontend (HTML + JavaScript)
+├── routes/                  # API routes
+├── app.js                   # Express app
+├── server.js                # Server entry point
+├── padel_reservation.sql    # Database schema
+├── Dockerfile
+├── docker-compose.yml
+├── .env.example             # Template for environment variables
+└── arsitektur.png           # Architecture diagram
 ```
-4. Run the server
+
+---
+
+## API Reference
+
+<!-- TODO: double-check access levels against the files in routes/ -->
+
+### Authentication (`/api/auth`)
+
+| Method | Endpoint           | Description                    | Access |
+| ------ | ------------------ | ------------------------------ | ------ |
+| POST   | `/register`        | Register a new user            | Public |
+| POST   | `/login`           | Log in                         | Public |
+| GET    | `/google`          | Start Google login             | Public |
+| GET    | `/google/callback` | Google OAuth callback          | Public |
+
+### Fields (`/api/fields`)
+
+| Method | Endpoint | Description              | Access    |
+| ------ | -------- | ------------------------ | --------- |
+| GET    | `/`      | List all courts          | All users |
+| GET    | `/:id`   | Get a court by id        | All users |
+| POST   | `/`      | Add a court              | Admin     |
+| PUT    | `/:id`   | Update a court           | Admin     |
+| DELETE | `/:id`   | Delete a court           | Admin     |
+
+### Bookings (`/api/bookings`)
+
+| Method | Endpoint  | Description                    | Access |
+| ------ | --------- | ------------------------------ | ------ |
+| GET    | `/my`     | List my bookings               | User   |
+| POST   | `/`       | Create a booking               | User   |
+| DELETE | `/:id`    | Delete a booking               | User   |
+| GET    | `/`       | List all bookings              | Admin  |
+| GET    | `/:id`    | Get a booking by id            | Admin  |
+| POST   | `/admin`  | Create a booking for any user  | Admin  |
+| PUT    | `/:id`    | Update a booking               | Admin  |
+| DELETE | `/:id`    | Delete any booking             | Admin  |
+
+### Users (`/api/users`)
+
+| Method | Endpoint | Description              | Access |
+| ------ | -------- | ------------------------ | ------ |
+| GET    | `/`      | List all accounts        | Admin  |
+| POST   | `/`      | Create an account        | Admin  |
+| PUT    | `/:id`   | Update an account        | Admin  |
+| DELETE | `/:id`   | Delete an account        | Admin  |
+
+---
+
+## Project Requirements
+
+| Requirement                                                        | Status |
+| ------------------------------------------------------------------ | :----: |
+| REST API with CRUD, data stored in a relational database           |   ✅   |
+| JWT for user authentication                                        |   ✅   |
+| Google OAuth login                                                 |   ✅   |
+| Rate limiting per user                                             |   ✅   |
+| API gateway for routing and validation                             |   ✅   |
+| Services packaged with Docker                                      |   ✅   |
+| HTTPS with SSL/TLS certificate                                     |   ✅   |
+| Encryption of sensitive data on the server                         |   ✅   |
+| IoT integration (optional)                                         |   ❌   |
+| IoT data through a message broker (RabbitMQ / Kafka)               |   ❌   |
+| Kubernetes orchestration                                           |   ❌   |
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) and npm
+- MySQL (or XAMPP / Laragon)
+- OpenSSL (included in Git for Windows via Git Bash)
+
+### Run locally
+
 ```bash
+# 1. Clone and install
+git clone https://github.com/daffmaulana/PadelPop.git
+cd PadelPop
+npm install
+
+# 2. Create the database and import the schema
+mysql -u root -p -e "CREATE DATABASE padel_reservation"
+mysql -u root -p padel_reservation < padel_reservation.sql
+
+# 3. Create your environment file, then edit it with your own values
+cp .env.example .env
+
+# 4. Generate a local HTTPS certificate (self-signed, for development only)
+mkdir -p cert
+openssl req -x509 -newkey rsa:2048 -nodes -days 365 \
+  -keyout cert/key.pem -out cert/cert.pem -subj "/CN=localhost"
+
+# 5. Start the server
 node server.js
 ```
-5. Akses localhost yang menggunakan https
+
+Then open <https://localhost:3001>. Your browser will warn about the self-signed certificate; this is expected in development.
+
+<!-- TODO: use the exact certificate file names that server.js expects -->
+
+> The `cert/` folder and the `.env` file are intentionally **not** in the repository. Never commit private keys or secrets.
+
+### Environment variables
+
+| Variable               | Description                          |
+| ---------------------- | ------------------------------------ |
+| `PORT`                 | HTTP port (default `3000`)           |
+| `PORTS`                | HTTPS port (default `3001`)          |
+| `DB_HOST`              | Database host                        |
+| `DB_USER`              | Database user                        |
+| `DB_PASSWORD`          | Database password                    |
+| `DB_NAME`              | Database name (`padel_reservation`)  |
+| `JWT_SECRET`           | Secret used to sign tokens (32+ characters) |
+| `GOOGLE_CLIENT_ID`     | Google OAuth client id               |
+| `GOOGLE_CLIENT_SECRET` | Google OAuth client secret           |
+
+Create your own Google credentials in the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).
+
+### Optional: run with Docker
+
 ```bash
-https://localhost:3001
+# Use DB_HOST=db and DB_PASSWORD=root in your .env
+docker-compose up --build
 ```
 
-## Deployment Docker
-1. Clone / Fork repository ke direktori lokal
-2. Create file .env di root direktori lokal
-```bash
-PORT=3000
-PORTS=3001
-DB_HOST=db 
-DB_USER=root
-DB_PASSWORD=root
-DB_NAME=padel_reservation
-JWT_SECRET=my-32-character-ultra-secure-and-ultra-long-secret
-GOOGLE_CLIENT_ID=[set your own/ contact Daffa]
-GOOGLE_CLIENT_SECRET=[set your own/ contact Daffa]
-```
-3. Jalankan `docker-compose up --build`
-4. Akses adminer mySQL di `localhost:8080` dengan user `root` dan password `root`
-5. Create database dengan import file mySQL yang tersedia.
-6. Jalankan ulang container `padel_reservation_app` di docker.
-7. Akses localhost yang menggunakan https
-```bash
-https://localhost:3001
-```
+Then open Adminer at `localhost:8080` (user `root`, password `root`), import `padel_reservation.sql`, restart the `padel_reservation_app` container and open <https://localhost:3001>.
+
+---
+
+## Roadmap
+
+- [ ] Deploy the application and add the live demo link
+- [ ] Add screenshots to the README
+- [ ] Add automated tests and a CI workflow
+- [ ] Integrate IoT data through a message broker
+- [ ] Orchestrate the services with Kubernetes
+
+---
+
+## Team
+
+Built by a group of six:
+
+- Daffa Bagus Maulana
+- Putra Mahandika
+- Ananda Divana
+- Dafa Andika Firmansyah
+- Farel Bayhaqi
+- Faiz Firstian Nugroho
+
+<!-- TODO: describe your own contribution to the project (e.g. which services or pages you built) -->
+
+---
+
+<p align="center">
+  <strong>PadelPop</strong><br>
+  Book your court. Play in style.
+</p>
